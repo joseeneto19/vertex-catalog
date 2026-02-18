@@ -1,8 +1,9 @@
-package com.joseneto.vertexcatalog.servicies;
+package com.joseneto.vertexcatalog.services;
 
 import com.joseneto.vertexcatalog.dto.CategoryDTO;
 import com.joseneto.vertexcatalog.entities.Category;
 import com.joseneto.vertexcatalog.repositories.CategoryRepository;
+import com.joseneto.vertexcatalog.services.exceptions.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -27,7 +28,7 @@ public class CategoryService {
     @Transactional(readOnly = true)
     public CategoryDTO findById(Long id) {
         Optional<Category> obj = categoryRepository.findById(id);
-        Category entity = obj.get();
+        Category entity = obj.orElseThrow(() -> new EntityNotFoundException("Entity not found."));
         return new CategoryDTO(entity);
     }
 

@@ -1,8 +1,7 @@
 package com.joseneto.vertexcatalog.controllers;
 
 import com.joseneto.vertexcatalog.dto.CategoryDTO;
-import com.joseneto.vertexcatalog.entities.Category;
-import com.joseneto.vertexcatalog.servicies.CategoryService;
+import com.joseneto.vertexcatalog.services.CategoryService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
