@@ -1,6 +1,7 @@
 package com.joseneto.vertexcatalog.controllers;
 
 import com.joseneto.vertexcatalog.dto.CategoryDTO;
+import com.joseneto.vertexcatalog.entities.Category;
 import com.joseneto.vertexcatalog.services.CategoryService;
 import jakarta.servlet.ServletRequest;
 import org.springframework.http.HttpStatus;
@@ -38,5 +39,11 @@ public class CategoryController {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CategoryDTO> update(@PathVariable Long id, @RequestBody CategoryDTO dto) {
+        dto = categoryService.update(id, dto);
+        return ResponseEntity.ok().body(dto);
     }
 }
